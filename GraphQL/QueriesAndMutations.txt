@@ -74,7 +74,7 @@ mutation Mutation($title: String!, $description: String!, $duration: Int!, $comp
 }
 
 
-********VARIABLES********
+**************VARIABLES**************
 {  "title": "NEW TASK",
   "description": "ADDED TASK DESCRIPTION",  "duration": 420,
   "completed": false,
@@ -83,7 +83,7 @@ mutation Mutation($title: String!, $description: String!, $duration: Int!, $comp
   "completeTaskId": 3,
 }
 
-********RESPONSE********
+**************RESPONSE**************
 {
   "data": {
     "addTask": {
@@ -106,6 +106,31 @@ mutation Mutation($title: String!, $description: String!, $duration: Int!, $comp
       "description": "Développer et exécuter des plans de test et des cas de test complets.",
       "duration": 25,
       "completed": true
+    }
+  }
+}
+
+---------------------------------------------------------TASK DELETION---------------------------------------------------------
+mutation DeleteTask($deleteTaskId: ID!) {
+  deleteTask(id: $deleteTaskId) {
+    id
+    title
+  }
+}
+
+**************VARIABLES**************
+
+{  
+  "deleteTaskId": 1,
+}
+
+**************RESPONSE**************
+
+{
+  "data": {
+    "deleteTask": {
+      "id": "1",
+      "title": "Développement Front-end pour Site E-commerce"
     }
   }
 }

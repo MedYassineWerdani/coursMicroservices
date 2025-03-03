@@ -60,6 +60,13 @@ const taskResolver = {
       }
       return null;
     },
+    deleteTask: (_, { id }) => {
+      const taskIndex = tasks.findIndex(task => task.id === id);
+      if (taskIndex === -1) {
+        throw new Error("Task not found");
+      }
+      return tasks.splice(taskIndex, 1)[0]; 
+    },
   },
 };
 

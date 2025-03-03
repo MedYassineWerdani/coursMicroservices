@@ -18,4 +18,5 @@ type Mutation {
   ): Task
   completeTask(id: ID!): Task
   changeDescription(id: ID!, description: String!): Task
+  deleteTask(id: ID!): Task
 }
