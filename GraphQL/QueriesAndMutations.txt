@@ -1,0 +1,111 @@
+query ExampleQuery {
+  tasks {
+    id
+    title
+    description
+    completed
+  }
+}
+
+mutation AddTask($title: String!, $description: String!, $completed: Boolean!) {
+  addTask(title: $title, description: $description, completed: $completed) {
+    title
+    description
+    completed
+  }
+}
+
+
+mutation CompleteTask($completeTaskId: ID!) {
+  completeTask(id: $completeTaskId) {
+    id
+    title
+    description
+    completed
+  }
+}
+
+}
+
+
+**************VARIABLES**************
+{
+  "taskId": null,
+  "title": "Font-end Dev",
+  "description": "Créer une interface utilisateur réactive en utilisant Angular",
+  "completed": false,
+  "completeTaskId": 4
+}
+
+---------------------------------------------------------AFTER ADDING DURATION---------------------------------------------------------
+
+query Tasks {
+  tasks {
+    id
+    title
+    description
+    duration
+    completed
+  }
+}
+
+mutation Mutation($title: String!, $description: String!, $duration: Int!, $completed: Boolean!, $changeDescriptionId: ID!, $changeDescriptionDescription2: String!, $completeTaskId: ID!) {
+  addTask(title: $title, description: $description, duration: $duration, completed: $completed) {
+    id
+    title
+    description
+    duration
+    completed
+  }
+  changeDescription(id: $changeDescriptionId, description: $changeDescriptionDescription2) {
+    id
+    title
+    description
+    duration
+    completed
+  }
+  completeTask(id: $completeTaskId) {
+    id
+    title
+    description
+    duration
+    completed
+  }
+}
+
+
+********VARIABLES********
+{  "title": "NEW TASK",
+  "description": "ADDED TASK DESCRIPTION",  "duration": 420,
+  "completed": false,
+  "changeDescriptionDescription2": "CHANGED DESCRIPTION",
+  "changeDescriptionId": 2,
+  "completeTaskId": 3,
+}
+
+********RESPONSE********
+{
+  "data": {
+    "addTask": {
+      "id": "4",
+      "title": "NEW TASK",
+      "description": "ADDED TASK DESCRIPTION",
+      "duration": 420,
+      "completed": false
+    },
+    "changeDescription": {
+      "id": "2",
+      "title": "Développement Back-end pour Authentification Utilisateur",
+      "description": "CHANGED DESCRIPTION",
+      "duration": 40,
+      "completed": false
+    },
+    "completeTask": {
+      "id": "3",
+      "title": "Tests et Assurance Qualité pour Application Web",
+      "description": "Développer et exécuter des plans de test et des cas de test complets.",
+      "duration": 25,
+      "completed": true
+    }
+  }
+}
