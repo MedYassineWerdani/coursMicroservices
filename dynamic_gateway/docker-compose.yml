@@ -1,0 +1,24 @@
+services:
+service-a:
+build: ./service-a
+networks:
+- kong-net
+service-b:
+build: ./service-b
+networks:
+- kong-net
+kong:
+image: kong:latest
+environment:
+KONG_DATABASE: "off"
+KONG_DECLARATIVE_CONFIG: /etc/kong/kong.yml
+volumes:
+- ./kong.yml:/etc/kong/kong.yml:ro
+ports:
+- "8000:8000" % Proxy
+- "8001:8001" % Admin API
+networks:
+- kong-net
+networks:
+kong-net:
+driver: bridge
